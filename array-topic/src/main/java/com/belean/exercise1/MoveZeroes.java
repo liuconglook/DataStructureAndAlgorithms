@@ -35,19 +35,7 @@ public class MoveZeroes {
      * 时间复杂度：O(n^2)
      */
     public static int[] moveZeroes01(int[] nums) {
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < nums.length - i - 1; j++) {
-                if (nums[j] == 0) {
-                    int swap = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = swap;
-                }
-            }
-        }
-
-        return nums;
-        
+        return null;
     }
 
     /**
@@ -57,19 +45,7 @@ public class MoveZeroes {
      * 时间复杂度：O(n)
      */
     public static int[] moveZeroes02(int[] nums) {
-
-        int j = 0;
-        for(int i = 0; i < nums.length; ++i) {
-            if(nums[i] != 0) {
-                nums[j++] = nums[i];
-            }
-        }
-
-        for(int i = j; i < nums.length; ++i) {
-            nums[i] = 0;
-        }
-
-        return nums;
+        return null;
     }
 
     /**
@@ -78,22 +54,7 @@ public class MoveZeroes {
      * 时间复杂度：O(n)
      */
     public static int[] moveZeroes03(int[] nums) {
-
-        int j = 0;
-        for(int i = 0; i < nums.length; ++i) {
-            if(nums[i] != 0) {
-                if(i != j) { // 优化处1
-                    nums[j] = nums[i];
-                }
-                j++;
-            }
-        }
-
-        for(int i = j; i < nums.length; ++i) {
-            nums[i] = 0;
-        }
-
-        return nums;
+        return null;
     }
 
     /**
@@ -103,19 +64,7 @@ public class MoveZeroes {
      * 时间复杂度：O(n)
      */
     public static int[] moveZeroes04(int[] nums) {
-
-        int j = 0;
-        for(int i = 0; i < nums.length; ++i) {
-            if(nums[i] != 0) {
-                if(i != j) {
-                    nums[j] = nums[i];
-                    nums[i] = 0; // 优化处2
-                }
-                j++;
-            }
-        }
-
-        return nums;
+        return null;
     }
 
     /**
@@ -124,19 +73,6 @@ public class MoveZeroes {
      * 时间复杂度：O(logn)
      */
     public static int[] moveZeroes05(int[] nums) {
-
-        int j = 0;
-        for(int i=0; i<nums.length; i++) {
-            if(nums[i] != 0) {
-                if(i != j) {
-                    int tmp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = tmp;
-                }
-                j++;
-            }
-        }
-
-        return nums;
+        return null;
     }
 }

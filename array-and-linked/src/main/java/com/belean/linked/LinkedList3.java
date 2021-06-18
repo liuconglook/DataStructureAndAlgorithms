@@ -27,6 +27,50 @@ public class LinkedList3<E> {
         return this;
     }
 
+    // 头插法
+    public LinkedList3<E> addFirst(E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+
+        Node<E> newNode = new Node<E>(e);
+
+        newNode.next = head.next;
+        newNode.pre = head;
+        head.next.pre = newNode;
+        head.next = newNode;
+        ++size;
+        return this;
+    }
+
+    // 根据索引插入
+    public LinkedList3<E> insert(int index, E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<E> newNode = new Node<E>(e);
+
+        int i = 0;
+        Node<E> currentNode = head;
+        while((currentNode = currentNode.next) != null) {
+            if(index == i) {
+                newNode.next = currentNode;
+                newNode.pre = currentNode.pre;
+                currentNode.pre.next = newNode;
+                currentNode.pre = newNode;
+                ++size;
+                break;
+            }
+            ++i;
+        }
+
+        return this;
+    }
+
     // 根据索引删除
     public void remove(int index){
         if(index < 0){
@@ -97,4 +141,23 @@ public class LinkedList3<E> {
         return str.toString();
     }
 
+    // 反向打印
+    public String reversePrint() {
+        System.out.println(head.next.next.next.next.next.next.next.next.pre.pre.pre.pre.pre.pre.pre.pre.data);
+        Node<E> currentNode = head;
+        while(currentNode.next != null){
+            currentNode = currentNode.next;
+        }
+
+        Node<E> lastNode = currentNode;
+        StringBuilder str = new StringBuilder("[");
+        while(currentNode.pre != null){
+            str.append(currentNode.data + ",");
+            currentNode = currentNode.pre;
+        }
+        if(currentNode != lastNode.next)
+            str.delete(str.lastIndexOf(","), str.length());
+        str.append("]");
+        return str.toString();
+    }
 }

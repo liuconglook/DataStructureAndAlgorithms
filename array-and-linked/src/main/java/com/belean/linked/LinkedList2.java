@@ -2,6 +2,7 @@ package com.belean.linked;
 
 /**
  * LinkedList 单链表，增加一个哨兵节点
+ * 利用哨兵节点可以简化插入删除第一个节点要做的特殊操作
  * E(Element)泛型，表示元素类型
  */
 public class LinkedList2<E> {
@@ -23,6 +24,47 @@ public class LinkedList2<E> {
         }
         currentNode.next = new Node<E>(e);
         size++;
+        return this;
+    }
+
+    // 头插法
+    public LinkedList2<E> addFirst(E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+
+        Node<E> newNode = new Node<E>(e);
+        newNode.next = head.next;
+        head.next = newNode;
+        size++;
+
+        return this;
+    }
+
+    // 根据索引插入
+    public LinkedList2<E> insert(int index, E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<E> newNode = new Node<E>(e);
+
+        Node<E> currentNode = head;
+        int i = 0;
+        while(currentNode.next != null) {
+            if(index == i) {
+                newNode.next = currentNode.next;
+                currentNode.next = newNode;
+                ++size;
+                break;
+            }
+            currentNode = currentNode.next;
+            ++i;
+        }
+
         return this;
     }
 

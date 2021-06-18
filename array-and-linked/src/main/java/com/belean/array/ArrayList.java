@@ -37,6 +37,20 @@ public class ArrayList<E> {
         return this;
     }
 
+    // 根据索引插入元素，为了保证有序性，需要搬移元素
+    public ArrayList<E> insert(int index, E e) {
+        if(index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        if(size == data.length){ // 数组满了，进行扩容，保证其容量
+            ensureCapacity();
+        }
+        System.arraycopy(data, index, data, index + 1, size - index + 1);
+        data[index] = e;
+        ++size;
+        return this;
+    }
+
     // 扩容两倍
     private void ensureCapacity() {
         E[] newData = (E[]) new Object[data.length * 2];

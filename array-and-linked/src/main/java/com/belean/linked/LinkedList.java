@@ -32,6 +32,55 @@ public class LinkedList<E> {
         return this;
     }
 
+    // 头插法
+    public LinkedList<E> addFirst(E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+
+        Node<E> newHead = new Node<E>(e); // 新的头结点
+        newHead.next = head;
+        head = newHead;
+        size++;
+
+        return this;
+    }
+
+    // 根据索引插入
+    public LinkedList<E> insert(int index, E e) {
+        if(e == null){
+            throw new IllegalArgumentException();
+        }
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<E> newNode = new Node<E>(e);
+
+        if(index == 0) { // 插入到第一个
+            newNode.next = head;
+            head = newNode;
+            size++;
+            return this;
+        }
+
+        int i = 1;
+        Node<E> currentNode = head;
+        while(currentNode.next != null) {
+            if(index == i) {
+                break;
+            }else{
+                currentNode = currentNode.next;
+                ++i;
+            }
+        }
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+        size++;
+
+        return this;
+    }
+
     // 根据索引删除
     public void remove(int index){
         if(index < 0 || size == 0){
